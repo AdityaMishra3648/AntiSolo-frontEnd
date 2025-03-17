@@ -49,11 +49,12 @@ const LoginPage = () => {
                 }),
             });
             const data = await response.text();
-            if(data!="Credentials Invalid !!"){
-                showToast("Successfully logged in!", "success");
+            if(data!="Credentials Invalid !!" && response.ok){
+                showToast("Successfully logged in!", "success"); 
                 Cookies.set("token", data, { expires: 7, secure: true, sameSite: "Strict" });
                 // Cookies.set("username", username, { expires: 7, secure: true, sameSite: "Strict" });
                 // Cookies.set("password", password, { expires: 7, secure: true, sameSite: "Strict" });
+                console.log("token in cokei from login = "+Cookies.get("token"));
                 setNotification("Successfully logged in!");
                 navigate("/homepage");
             }

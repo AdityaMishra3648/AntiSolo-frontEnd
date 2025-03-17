@@ -6,7 +6,6 @@
     box-sizing: border-box;
     font-family: 'Space Grotesk', sans-serif;
 }
-
 .container {
     min-height: 100vh;
     background: linear-gradient(135deg, #ff4d4d 0%, #f23f9d 100%);

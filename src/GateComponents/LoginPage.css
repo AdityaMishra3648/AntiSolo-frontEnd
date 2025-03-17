@@ -38,7 +38,8 @@
 .login_pattern-bg {
     display: none;
     width: 50%;
-    background-image: url('https://cdn.dribbble.com/userupload/30832962/file/original-199091f9b19f067153ecd518321a3898.gif');
+    /* background-image: url('https://cdn.dribbble.com/userupload/30832962/file/original-199091f9b19f067153ecd518321a3898.gif'); */
+    background-image: url('https://res.cloudinary.com/dx7bcuxjn/image/upload/v1741961430/original-199091f9b19f067153ecd518321a3898_fzb4sm.gif');
     background-size: cover;
     background-position: center;
 }

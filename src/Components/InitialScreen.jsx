@@ -42,10 +42,13 @@ function InitailScreen() {
         
         <br />
         <br />
-        <button onClick={()=>navigate("/signup")}>SignUp karo yaha kya karoge</button>
+        <button onClick={()=>navigate("/signup")}>SignUp</button>
         <br />
         <br />
         <button onClick={()=>navigate("/login")}>login</button>
+        <br />
+        <br />
+        <button onClick={()=>navigate("/homepage")}>Guest</button>
       
     </div>
   );
