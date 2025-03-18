@@ -15,7 +15,43 @@ const ProfilePage = () => {
   const [requestSent,setRequestSent] = useState(false);
   const [sendingRequest,setSendingRequest] = useState(false);
   const [trigger, setTrigger] = useState(0);
+  const [receivedFriendRequest,setReceivedFriendRequest] = useState(false);
   
+    const AcceptRequest = async () => {
+      console.log("accept request called");
+      setSendingRequest(true);
+      try {
+        const response = await fetch(`http://localhost:7000/User/confirmRequest/${userId}`, {
+                                method: "POST",
+                               headers: {
+                                 "Content-Type": "application/json",
+                                 "Authorization": `Bearer ${Cookies.get("token")}`
+                               },
+          });
+        
+        if (!response.ok) {
+          console.log("failed to Accept friend request "+response.status);
+          setSendingRequest(false);
+          return;
+        }
+        const data = await response.json();
+        console.log("accepted friend request "+data);
+        // setRequestSent(!requestSent);
+        // setRequestSent(false);
+        // for(let buddy of user.friendRequest){
+        //   if(buddy.name==Cookies.get("userName")){
+        //     console.log("setting request sent to true");
+        //     setRequestSent(true);
+        //     break;
+        //   }
+        // }
+      } catch (err) {
+        console.log(err.message);
+      }
+      setSendingRequest(false);
+      setTrigger(trigger+1);
+    }
+
     const SendOrWidrawRequest = async () =>{
       setSendingRequest(true);
         try {
@@ -83,11 +119,35 @@ const ProfilePage = () => {
       } catch (err) {
         setError(err.message);
       }
+      if(userId==Cookies.get("userName") || alreadyBuddy || requestSent)return;
+      try {
+        const response = await fetch(`http://localhost:7000/login/userInfo/${Cookies.get("userName")}`, {
+                                method: "GET",
+                               headers: {
+                                 "Content-Type": "application/json"
+                                //  "Authorization": `Bearer ${Cookies.get("token")}`
+                               },
+        });
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        const data = await response.json();
+        for(let buddy of data.friendRequest){
+          if(buddy.name==userId){
+            setReceivedFriendRequest(true);
+            break;
+          }
+        }
+        // extractProjectData();
+      } catch (err) {
+        console.log(err.message);
+      }
       // console.log("from link received userId is = "+userId+" and username stored in cookies is "+Cookies.get("userName"));
     };
 
     fetchUser();
-  }, [trigger]);
+  }, [trigger,userId]);
   useEffect(() => {
     if (user!=null) {
       setProjects([]);
@@ -97,7 +157,7 @@ const ProfilePage = () => {
       extractTeamProjectData();
       extractAppliedProjectData();
     }
-  }, [user]);
+  }, [user,userId]);
 
   const extractProjectData = async () => {
     // console.log("user structure is "+user.projects+" and length is "+user.projects.length);
@@ -197,7 +257,13 @@ const ProfilePage = () => {
       <h2>Buddies</h2>
       <ul>{user.buddies.length ? user.buddies.map((buddy, index) => <li key={index} onClick={()=>navigate(`/profile/${buddy.name}`)}>{buddy.name} <img src={buddy.imageUrl} alt="buddy image" style={{ width: "50px", height: "50px", objectFit: "cover" }} /> </li>) : <li>No buddies added</li>}</ul>
 
-      {!alreadyBuddy && userId!=Cookies.get("userName") && <button disabled={sendingRequest} onClick={SendOrWidrawRequest}>{requestSent?"Widraw Friend Request":"Add Friend"}</button>}
+      {!alreadyBuddy && userId!=Cookies.get("userName") && !receivedFriendRequest && <button disabled={sendingRequest} onClick={SendOrWidrawRequest}>{requestSent?"Widraw Friend Request":"Add Friend"}</button>}
+      {!alreadyBuddy && userId!=Cookies.get("userName") && receivedFriendRequest && <button disabled={sendingRequest} onClick={AcceptRequest}>Confirm</button>}
+        <br />
+        <br />
+        <button onClick={()=>navigate("/homepage")}>home</button>
+        <br />
+        <br />
     </div>
   );
 };

@@ -12,6 +12,7 @@ const ProjectPage = () => {
   const [applyInProgress, setApplyInProgress] = useState(false);
  const [appliedAlready, setAppliedAlready] = useState(false);
   const [toggle, setToggle] = useState(0);
+  const [member, setMember] = useState(false);
   const ApplyToggle = async () => {
     setApplyInProgress(true);
     try {
@@ -76,10 +77,17 @@ const ProjectPage = () => {
         if(Cookies.get("userName")==data.author){
           setOwner(true);
         }
+        for(let app of data.members){
+          // console.log(app.name)
+          if(app.name==Cookies.get("userName")){
+            setMember(true);
+          } 
+        }
         for(let app of data.applicants){
-          console.log(app.name)
+          // console.log(app.name)
           if(app.name==Cookies.get("userName")){
             setAppliedAlready(true);
+            setMember(true);
             return;
           } 
         }
@@ -128,13 +136,16 @@ const ProjectPage = () => {
         {project.applicants.map((applicant, index) => (
           <li key={index} >
             <div onClick={()=>navigate(`/profile/${applicant.name}`)}>{applicant.name} <img src={applicant.imageUrl} alt={applicant.name} style={{ width: "50px", height: "50px", objectFit: "cover" }} /> </div>
-            <button style={{ display: owner ? "block" : "none" }} disabled={applyInProgress} onClick={()=>AcceptApplicant(applicant.name)}>Accept</button>
+            <button style={{ display : owner ? "block" : "none" }} disabled={applyInProgress} onClick={()=>AcceptApplicant(applicant.name)}>Accept</button>
           </li>
         ))}
       </ul>
     <br />
     <br />
-         <button style={{ display: owner ? "none" : "block" }}  disabled={applyInProgress} onClick={ApplyToggle}>{appliedAlready?"Widraw":"Apply"}</button> 
+         <button style={{ display: (owner || member) ? "none" : "block" }}  disabled={applyInProgress} onClick={ApplyToggle}>{appliedAlready?"Widraw":"Apply"}</button> 
+    <br />
+    <br />
+    <button onClick={()=>navigate("/homepage")}>home</button>
     <br />
     <br />
 
