@@ -21,7 +21,7 @@ const ProfilePage = () => {
       console.log("accept request called");
       setSendingRequest(true);
       try {
-        const response = await fetch(`http://localhost:7000/User/confirmRequest/${userId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/User/confirmRequest/${userId}`, {
                                 method: "POST",
                                headers: {
                                  "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const ProfilePage = () => {
     const SendOrWidrawRequest = async () =>{
       setSendingRequest(true);
         try {
-          const response = await fetch(`http://localhost:7000/User/sendFriendRequest/${userId}`, {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/User/sendFriendRequest/${userId}`, {
                                   method: "POST",
                                  headers: {
                                    "Content-Type": "application/json",
@@ -89,7 +89,7 @@ const ProfilePage = () => {
 
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:7000/login/userInfo/${userId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/login/userInfo/${userId}`, {
                                 method: "GET",
                                headers: {
                                  "Content-Type": "application/json"
@@ -121,7 +121,7 @@ const ProfilePage = () => {
       }
       if(userId==Cookies.get("userName") || alreadyBuddy || requestSent)return;
       try {
-        const response = await fetch(`http://localhost:7000/login/userInfo/${Cookies.get("userName")}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/login/userInfo/${Cookies.get("userName")}`, {
                                 method: "GET",
                                headers: {
                                  "Content-Type": "application/json"
@@ -165,7 +165,7 @@ const ProfilePage = () => {
       try {
 
         console.log("id for one of project is "+project);
-        const response = await fetch(`http://localhost:7000/project/getProject/${project}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/project/getProject/${project}`);
         if (!response.ok) {
           throw new Error("Failed to fetch project data "+response.status);
         }
@@ -183,7 +183,7 @@ const ProfilePage = () => {
   const extractTeamProjectData = async () => {
     for(let project of user.teams){
       try {
-        const response = await fetch(`http://localhost:7000/project/getProject/${project}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/project/getProject/${project}`);
         if (!response.ok) {
           throw new Error("Failed to fetch project data "+response.status);
         }
@@ -194,10 +194,31 @@ const ProfilePage = () => {
       }
     }
   } 
+  const unFriend = async (buddy) =>{
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/User/removeFriend/${buddy}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${Cookies.get("token")}`
+        },
+      });
+      // if (!response.ok) {
+      //   throw new Error("Failed to fetch project data "+response.status);
+      // }
+      // const data = await response.json();
+      // setTeams(prevProjects => [...prevProjects, data]);
+    } catch (err) {
+      setError(err.message);
+    }
+    setTrigger(trigger+1);
+  }
+
+
   const extractAppliedProjectData = async () => {
     for(let project of user.applied){
       try {
-        const response = await fetch(`http://localhost:7000/project/getProject/${project}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/project/getProject/${project}`);
         if (!response.ok) {
           throw new Error("Failed to fetch project data "+response.status);
         }
@@ -217,6 +238,7 @@ const ProfilePage = () => {
       <h1>{user.userName} <img src={user.profileImageUrl} alt="" style={{ width: "50px", height: "50px", objectFit: "cover" }} /></h1>
       {userId==Cookies.get("userName") && <button onClick={()=>navigate("/editProfile", { state: { user: user } })}>Edit Profile</button>}
 
+      <p>role: {user.role}</p>
       <p>Email: {user.email}</p>
       <p>Bio: {user.bio || "No bio available"}</p>
       <p>Account Created: {new Date(user.accountCreationDate).toLocaleDateString()}</p>
@@ -251,14 +273,22 @@ const ProfilePage = () => {
       <ul>{user.applied.length ? applied.map((project, index) => 
         <li key={index} onClick={()=>navigate(`/projectInfo/${project.id}`)} >{project.title} <img src={project.image} alt="project image" style={{ width: "50px", height: "50px", objectFit: "contain" }} /></li>) : <li>No Active Applications</li>}</ul>
       
+      {user.role=="ADMIN" && <button onClick={()=>navigate("/admin")}>Admin mode</button>}
+      
       <h2>Notifications</h2>
       <ul>{user.notifications.length ? user.notifications.map((note, index) => <li key={index}>{note}</li>) : <li>No notifications</li>}</ul>
       
       <h2>Buddies</h2>
-      <ul>{user.buddies.length ? user.buddies.map((buddy, index) => <li key={index} onClick={()=>navigate(`/profile/${buddy.name}`)}>{buddy.name} <img src={buddy.imageUrl} alt="buddy image" style={{ width: "50px", height: "50px", objectFit: "cover" }} /> </li>) : <li>No buddies added</li>}</ul>
+      <ul>{user.buddies.length ? user.buddies.map((buddy, index) => <li key={index} onClick={()=>navigate(`/profile/${buddy.name}`)}>{buddy.name} 
+        <img src={buddy.imageUrl} alt="buddy image" style={{ width: "50px", height: "50px", objectFit: "cover" }} />
+        {userId==Cookies.get("userName") && <button onClick={()=>unFriend(buddy.name)}>unfriend</button>} </li>
+      ) : <li>No buddies added</li>}</ul>
 
       {!alreadyBuddy && userId!=Cookies.get("userName") && !receivedFriendRequest && <button disabled={sendingRequest} onClick={SendOrWidrawRequest}>{requestSent?"Widraw Friend Request":"Add Friend"}</button>}
       {!alreadyBuddy && userId!=Cookies.get("userName") && receivedFriendRequest && <button disabled={sendingRequest} onClick={AcceptRequest}>Confirm</button>}
+        <br />
+        <br />
+        <button>this button is supposed to appear if you guys share a project in betweeen and should be calle "rate" and show rating point if already rated I need to implement its features on monday</button>
         <br />
         <br />
         <button onClick={()=>navigate("/homepage")}>home</button>

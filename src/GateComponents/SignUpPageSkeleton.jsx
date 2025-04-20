@@ -13,7 +13,7 @@ const [password,setPassword] = useState('');
 
 const signUp = async () => {
   try {
-    const response = await fetch(`http://localhost:7000/signUp/saveUser/${otp}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/saveUser/${otp}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

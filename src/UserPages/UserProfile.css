@@ -1,0 +1,889 @@
+/* UserProfile.css */
+/* Base styles */
+:root {
+    --primary-bg: #121927;
+    --secondary-bg: #1a2333;
+    --accent-color: #7e57c2;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b7c3;
+    --border-color: #2a3446;
+    --hover-color: #2e3a52;
+    --success-color: #4caf50;
+    --error-color: #f44336;
+    --skill-tag-bg: #644ba0;
+    --interest-tag-bg: #3f6ad8;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --transition-speed: 0.3s;
+  }
+  
+   .user-profile-containerUserProfilePageCss {
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2rem;
+    max-width: 1200px;
+    min-width: 72vw;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  
+  /* Profile Header */
+  .profile-headerUserProfilePageCss {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .profile-image-containerUserProfilePageCss {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent-color);
+    box-shadow: var(--card-shadow);
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .profile-image-containerUserProfilePageCss.editableUserProfilePageCss {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-image-containerUserProfilePageCss.editableUserProfilePageCss:hover {
+    transform: scale(1.05);
+  }
+  
+  .profile-image-containerUserProfilePageCss.editableUserProfilePageCss:hover .edit-overlayUserProfilePageCss {
+    opacity: 1;
+  }
+  
+  .edit-overlayUserProfilePageCss {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+  }
+  
+  .edit-overlayUserProfilePageCss span {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  }
+  
+  .profile-imageUserProfilePageCss {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .profile-infoUserProfilePageCss {
+    /* min-width: 60vw; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .usernameUserProfilePageCss {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+  }
+  
+  .bioUserProfilePageCss {
+    font-size: 1.1rem;
+    margin: 0 0 1.5rem 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  
+  .account-detailsUserProfilePageCss {
+    display: flex;
+    gap: 2rem;
+    color: var(--text-secondary);
+  }
+  
+  .creation-dateUserProfilePageCss {
+    font-style: italic;
+  }
+  
+  .rating-containerUserProfilePageCss {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .rating-valueUserProfilePageCss {
+    font-weight: bold;
+    color: var(--accent-color);
+  }
+  
+  .rating-countUserProfilePageCss {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .rating-emojiUserProfilePageCss {
+    font-size: 1.5rem;
+    cursor: default;
+  }
+  
+  /* Profile Actions */
+  .profile-actionsUserProfilePageCss {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .edit-profile-buttonUserProfilePageCss {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--skill-tag-bg);
+    color: var(--text-primary);
+    transition: all var(--transition-speed);
+  }
+  
+  .edit-profile-buttonUserProfilePageCss:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Profile Body */
+  .profile-bodyUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .profile-sectionUserProfilePageCss {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+  }
+  
+  .section-titleUserProfilePageCss {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+  
+  /* Tags styling */
+  .tags-containerUserProfilePageCss {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  
+  .skill-tagUserProfilePageCss, .interest-tagUserProfilePageCss {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform var(--transition-speed);
+  }
+  
+  .skill-tagUserProfilePageCss {
+    background-color: var(--skill-tag-bg);
+  }
+  
+  .interest-tagUserProfilePageCss {
+    background-color: var(--interest-tag-bg);
+  }
+  
+  .skill-tagUserProfilePageCss:hover, .interest-tagUserProfilePageCss:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Social Links */
+  .social-linksUserProfilePageCss {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .social-linkUserProfilePageCss {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--accent-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all var(--transition-speed);
+  }
+  
+  .social-linkUserProfilePageCss:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Projects styling */
+  .projects-gridUserProfilePageCss {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .project-cardUserProfilePageCss {
+    background-color: var(--primary-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    cursor: pointer;
+  }
+  
+  .project-cardUserProfilePageCss:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .project-image-containerUserProfilePageCss {
+    height: 150px;
+    overflow: hidden;
+  }
+  
+  .project-imageUserProfilePageCss {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+  }
+  
+  .project-cardUserProfilePageCss:hover .project-imageUserProfilePageCss {
+    transform: scale(1.05);
+  }
+  
+  .project-titleUserProfilePageCss {
+    padding: 1rem;
+    margin: 0;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  /* Action buttons */
+  .actions-containerUserProfilePageCss {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .action-buttonUserProfilePageCss {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    background-color: var(--secondary-bg);
+    color: var(--text-primary);
+  }
+  
+  .friends-buttonUserProfilePageCss {
+    background-color: var(--accent-color);
+  }
+  
+  .rate-buttonUserProfilePageCss {
+    background-color: var(--interest-tag-bg);
+  }
+  
+  .action-buttonUserProfilePageCss:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Modals */
+  .modal-overlayUserProfilePageCss {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+  }
+  
+  .modalUserProfilePageCss {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: slideIn 0.3s;
+  }
+  
+  /* Rating modal */
+  .rating-modalUserProfilePageCss {
+    max-width: 400px;
+  }
+  
+  .rating-starsUserProfilePageCss {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .rating-starUserProfilePageCss {
+    font-size: 2rem;
+    color: #4d4d4d;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+  }
+  
+  .rating-starUserProfilePageCss:hover, .rating-starUserProfilePageCss.activeUserProfilePageCss {
+    color: #ffc107;
+    transform: scale(1.2);
+  }
+  
+  .selected-ratingUserProfilePageCss {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+  }
+  
+  .modal-buttonsUserProfilePageCss {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .modal-buttonUserProfilePageCss {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+  }
+  
+  .cancelUserProfilePageCss {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+  
+  .submitUserProfilePageCss {
+    background-color: var(--accent-color);
+    color: white;
+    padding: auto;
+  }
+  
+  .submitUserProfilePageCss:disabled {
+    background-color: #4d4d4d;
+    cursor: not-allowed;
+  }
+  
+  .rating-successUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: bounceIn 0.5s;
+  }
+  
+  .success-emojiUserProfilePageCss {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Profile Image Modal */
+  .profile-image-modalUserProfilePageCss {
+    max-width: 600px;
+  }
+  
+  .image-upload-containerUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .image-upload-areaUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .upload-labelUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+  }
+  
+  .upload-labelUserProfilePageCss:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(126, 87, 194, 0.1);
+  }
+  
+  .upload-iconUserProfilePageCss {
+    font-size: 2.5rem;
+  }
+  
+  .file-inputUserProfilePageCss {
+    display: none;
+  }
+  
+  .image-preview-containerUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .preview-image-wrapperUserProfilePageCss {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent-color);
+  }
+  
+  .preview-imageUserProfilePageCss {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  /* Edit Profile Page */
+  .edit-profile-containerUserProfilePageCss {
+    padding-bottom: 3rem;
+    width: 97%;
+  }
+  
+  .edit-profile-titleUserProfilePageCss {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--text-primary);
+  }
+  
+  .edit-profile-sectionUserProfilePageCss {
+    background-color: var(--secondary-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .edit-profile-headerUserProfilePageCss {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .profile-image-previewUserProfilePageCss {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent-color);
+  }
+  
+  .profile-basic-infoUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .edit-sectionUserProfilePageCss {
+    margin-bottom: 2rem;
+  }
+  
+  .edit-section-titleUserProfilePageCss {
+    font-size: 1.3rem;
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+  }
+  
+  .bio-inputUserProfilePageCss {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .edit-tags-containerUserProfilePageCss {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .editable-tagUserProfilePageCss {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .remove-tagUserProfilePageCss {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  .remove-tagUserProfilePageCss:hover {
+    color: white;
+  }
+  
+  .add-tag-containerUserProfilePageCss {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .tag-inputUserProfilePageCss {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+  }
+  
+  .add-tag-buttonUserProfilePageCss {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Social Links Editor */
+  .social-links-editorUserProfilePageCss {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .editable-social-linkUserProfilePageCss {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    background-color: var(--primary-bg);
+    border-radius: 6px;
+  }
+  
+  .social-platformUserProfilePageCss {
+    font-weight: bold;
+    width: 100px;
+  }
+  
+  .social-urlUserProfilePageCss {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var (--text-secondary);
+  }
+  
+  .remove-socialUserProfilePageCss {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  .remove-socialUserProfilePageCss:hover {
+    color: white;
+  }
+  
+  .add-social-containerUserProfilePageCss {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .social-platform-inputUserProfilePageCss, .social-url-inputUserProfilePageCss {
+    padding: 0.6rem 1rem;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+  }
+  
+  .social-platform-inputUserProfilePageCss {
+    width: 120px;
+  }
+  
+  .social-url-inputUserProfilePageCss {
+    flex: 1;
+  }
+  
+  .add-social-buttonUserProfilePageCss {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .edit-profile-actionsUserProfilePageCss {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .cancel-buttonUserProfilePageCss {
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+  }
+  
+  .save-buttonUserProfilePageCss {
+    background-color: var(--success-color);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+  }
+  
+  @keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  @keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  /* Animation classes */
+  .bounceUserProfilePageCss {
+    animation: pulse 2s infinite;
+  }
+  
+  .floatUserProfilePageCss {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .fade-inUserProfilePageCss {
+    animation: fadeIn 0.8s forwards;
+    opacity: 0;
+  }
+  
+  .pop-inUserProfilePageCss {
+    animation: popIn 0.5s forwards;
+    opacity: 0;
+  }
+  
+  .slide-upUserProfilePageCss {
+    animation: slideUp 0.6s forwards;
+    opacity: 0;
+  }
+  
+  .slide-in-leftUserProfilePageCss {
+    animation: slideInLeft 0.5s forwards;
+  }
+  
+  .slide-in-rightUserProfilePageCss {
+    animation: slideInRight 0.5s forwards;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .profile-headerUserProfilePageCss {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .account-detailsUserProfilePageCss {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .profile-actionsUserProfilePageCss {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .projects-gridUserProfilePageCss {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  
+    .actions-containerUserProfilePageCss {
+      flex-direction: column;
+    }
+  
+    .action-buttonUserProfilePageCss {
+      width: 100%;
+    }
+  
+    .edit-profile-headerUserProfilePageCss {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .edit-profile-actionsUserProfilePageCss {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .add-social-containerUserProfilePageCss {
+      flex-direction: column;
+    }
+  
+    .social-platform-inputUserProfilePageCss {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .user-profile-containerUserProfilePageCss {
+      padding: 1rem;
+    }
+  
+    .profile-image-containerUserProfilePageCss {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .usernameUserProfilePageCss {
+      font-size: 1.8rem;
+    }
+  
+    .bioUserProfilePageCss {
+      font-size: 1rem;
+    }
+  
+    .projects-gridUserProfilePageCss {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .report-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: bounceIn 0.5s;
+  }
+  /* Report Modal Styles */
+.report-modal {
+  max-width: 500px;
+}
+
+.report-content {
+  margin: 1.5rem 0;
+}
+
+.report-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.report-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+.report-button {
+  background-color: #ea384c;
+}
+
+.report-button:hover {
+  background-color: #d1293c;
+}

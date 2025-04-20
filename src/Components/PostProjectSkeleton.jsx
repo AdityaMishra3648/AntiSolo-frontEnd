@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState,useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import Cookies from "js-cookie";
@@ -88,7 +88,9 @@ function PostProjectSkeleton(){
         "Networking & Security", "Software Engineering & Development",
         "Database Management", "Computer Vision", "Natural Language Processing (NLP)",
         "Autonomous Systems", "HealthTech", "FinTech", "EdTech", "Robotics"];
-
+      useEffect(() => {
+        if(!Cookies.get("token"))navigate("/login");
+      },[]);
     const postProject = async () =>{
       // e.preventDefault();
         // if (password !== confirmPassword) {
@@ -96,7 +98,7 @@ function PostProjectSkeleton(){
         //     return;
         // }
         try {
-            const response = await fetch(`http://localhost:7000/project/save`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/project/save`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -144,7 +146,7 @@ function PostProjectSkeleton(){
     //useless function just for testing
     const sayHii = async () =>{
       try {
-        const response = await fetch(`http://localhost:7000/project/test`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/project/test`, {
           method: "POST",
           headers: {
               "Content-Type": "application/json",

@@ -36,7 +36,8 @@
 .pattern-bg {
     display: none;
     width: 50%;
-    background-image: url('https://i.pinimg.com/originals/f1/e7/34/f1e734f9cade86fe737a9aa404ad5677.gif');
+    /* background-image: url('https://i.pinimg.com/originals/f1/e7/34/f1e734f9cade86fe737a9aa404ad5677.gif'); */
+    background-image: url('https://res.cloudinary.com/dx7bcuxjn/image/upload/v1745087926/f1e734f9cade86fe737a9aa404ad5677_zd2aqz.gif');
     background-size: cover;
     background-position: center;
 }

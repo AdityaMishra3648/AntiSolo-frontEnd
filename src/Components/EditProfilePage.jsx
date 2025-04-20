@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
+import { use } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -36,7 +37,7 @@ const uploadImage = async () => {
         setUploading(true);
     
         try {
-          const response = await fetch("http://localhost:7000/User/saveImage", {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/User/saveImage`, {
             method: "POST",
             headers: {
               Authorization: `Bearer ${Cookies.get("token")}`, // Replace with actual token handling
@@ -61,6 +62,9 @@ const uploadImage = async () => {
           console.error(error);
         }
 };
+  useEffect(() => {
+    if(!Cookies.get("token"))navigate("/login");
+  });
 
   return (
     <div>

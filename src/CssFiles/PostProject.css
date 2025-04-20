@@ -1,0 +1,222 @@
+.post-project-pagePostProjectclass {
+  min-height: 100vh;
+  background-color: #111827;
+  color: white;
+}
+
+.profile-containerPostProjectclass {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.profile-imagePostProjectclass {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-project-btnPostProjectclass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: #4f6bff;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 12px rgba(79, 107, 255, 0.5);
+}
+
+.post-project-containerPostProjectclass {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.post-project-titlePostProjectclass {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.post-project-formPostProjectclass {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #1e293b;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-fieldPostProjectclass {
+  width: 100%;
+}
+
+
+.form-fieldPostProjectclass label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.form-fieldPostProjectclass input,
+.form-fieldPostProjectclass textarea,
+.form-fieldPostProjectclass select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #293548;
+  border: 1px solid #3e4c61;
+  border-radius: 6px;
+  color: white;
+  font-size: 0.9375rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-fieldPostProjectclass input:focus,
+.form-fieldPostProjectclass textarea:focus,
+.form-fieldPostProjectclass select:focus {
+  outline: none;
+  border-color: #4f6bff;
+}
+
+.form-fieldPostProjectclass input::placeholder,
+.form-fieldPostProjectclass textarea::placeholder {
+  color: #8896ab;
+}
+
+.form-fieldPostProjectclass input[type="number"] {
+  padding-right: 0.5rem;
+}
+
+.form-fieldPostProjectclass input.error,
+.form-fieldPostProjectclass textarea.error,
+.form-fieldPostProjectclass select.error {
+  border-color: #ef4444;
+}
+
+.error-messagePostProjectclass {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.character-countPostProjectclass {
+  font-size: 0.75rem;
+  color: #a3aebd;
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+.select-with-addPostProjectclass {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.select-with-addPostProjectclass select {
+  flex: 1;
+}
+
+.add-buttonPostProjectclass {
+  background-color: #293548;
+  color: white;
+  border: 1px solid #3e4c61;
+  border-radius: 6px;
+  padding: 0 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.add-buttonPostProjectclass:hover {
+  background-color: #374151;
+  border-color: #4f6bff;
+}
+
+.selected-itemsPostProjectclass {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.selected-itemPostProjectclass {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #293548;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+}
+
+.remove-buttonPostProjectclass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #a3aebd;
+  cursor: pointer;
+  padding: 0;
+}
+
+.remove-buttonPostProjectclass:hover {
+  color: white;
+}
+
+.form-actionsPostProjectclass {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.submit-buttonPostProjectclass {
+  background-color: #4f6bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.submit-buttonPostProjectclass:hover {
+  background-color: #3b5aff;
+  box-shadow: 0 0 6px rgba(79, 107, 255, 0.4);
+}
+
+@keyframes fadeInPostProjectclass {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .post-project-containerPostProjectclass {
+    padding: 2rem;
+  }
+
+  .post-project-formPostProjectclass {
+    padding: 2rem;
+  }
+}

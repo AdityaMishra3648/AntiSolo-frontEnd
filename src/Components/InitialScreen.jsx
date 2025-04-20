@@ -12,7 +12,7 @@ function InitailScreen() {
             console.log("checking token");
 
             try {
-              const response = await fetch(`http://localhost:7000/login/checkToken/${token}`, {
+              const response = await fetch(`${import.meta.env.VITE_API_URL}/login/checkToken/${token}`, {
                   method: "GET",
                   headers: {
                       "Content-Type": "application/json",

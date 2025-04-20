@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import Cookies from "js-cookie";
 import "./initialpage.css";
+// import "../Components/HomePageCompleted.css";
 
 const EntryPage = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const EntryPage = () => {
                     console.log("checking token");
         
                     try {
-                      const response = await fetch(`http://localhost:7000/login/checkToken/${token}`, {
+                      const response = await fetch(`${import.meta.env.VITE_API_URL}/login/checkToken/${token}`, {
                           method: "GET",
                           headers: {
                               "Content-Type": "application/json",
@@ -34,7 +35,7 @@ const EntryPage = () => {
                       const isValid = await response.json(); // Expecting boolean response
                       console.log("Token is valid:", isValid);
                       if(isValid){
-                        navigate("/homepage");
+                        navigate("/home");
                       }
                      } catch (error) {
                       console.error("Error:", error);
@@ -49,7 +50,8 @@ const EntryPage = () => {
     <div className="page-container">
       <div className="background">
         <img
-          src="https://i.pinimg.com/originals/8b/35/fe/8b35fef55fba1a201c9c7a11d3ec3d64.gif"
+          // src="https://i.pinimg.com/originals/8b/35/fe/8b35fef55fba1a201c9c7a11d3ec3d64.gif"
+          src="https://res.cloudinary.com/dx7bcuxjn/image/upload/v1745087736/8b35fef55fba1a201c9c7a11d3ec3d64_ao7or2.gif"
           alt="Coding animation"
         />
       </div>
@@ -71,7 +73,7 @@ const EntryPage = () => {
             Sign Up
           </button>
           
-          <button className="btn guest-btn" onClick={()=>navigate("/homepage")}>
+          <button className="btn guest-btn" onClick={()=>navigate("/home")}>
             <span className="icon user-cog"></span>
             Guest
           </button>

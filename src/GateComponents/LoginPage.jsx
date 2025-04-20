@@ -38,7 +38,8 @@ const LoginPage = () => {
             return;
         }
         try{
-            const response = await fetch("http://localhost:7000/login",{
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/login`,{
+            // const response = await fetch("http://192.168.29.56:7000/login",{
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -47,16 +48,18 @@ const LoginPage = () => {
                     userName: username,
                     password : password
                 }),
+                // credentials: "include",
             });
             const data = await response.text();
             if(data!="Credentials Invalid !!" && response.ok){
                 showToast("Successfully logged in!", "success"); 
-                Cookies.set("token", data, { expires: 7, secure: true, sameSite: "Strict" });
+                // Cookies.set("token", data, { expires: 7, secure: true, sameSite: "Strict" });
+                Cookies.set("token", data, { expires: 7 });
                 // Cookies.set("username", username, { expires: 7, secure: true, sameSite: "Strict" });
                 // Cookies.set("password", password, { expires: 7, secure: true, sameSite: "Strict" });
                 console.log("token in cokei from login = "+Cookies.get("token"));
                 setNotification("Successfully logged in!");
-                navigate("/homepage");
+                navigate("/home");
             }
             else showToast(data, "error");
         }catch(error){
@@ -74,7 +77,7 @@ const LoginPage = () => {
                     <form onSubmit={handleSubmit}>
                         <input
                             type="text"
-                            placeholder="Enter your username"
+                            placeholder="Username"
                             className="login_input-style"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
@@ -87,7 +90,7 @@ const LoginPage = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <button type="submit" className="login_btn-primary" onClick={handleSubmit}>Login</button>
-                        <button type="button" className="login_btn-forgot">Forgot Password?</button>
+                        <button type="button" className="login_btn-forgot" onClick={()=>navigate("/forgotPassword")}>Forgot Password?</button>
                     </form>
                     <p className="login_signup-text">
                         Don't have an account?

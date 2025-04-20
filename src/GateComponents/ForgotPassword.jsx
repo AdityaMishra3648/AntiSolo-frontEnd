@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useGlobalState } from "../Utility/GlobalStateProvider";
 
-const SignUpPage = () => {
+const ForgotPassword = () => {
 
     const navigate = useNavigate();
 
@@ -16,27 +16,6 @@ const SignUpPage = () => {
     const [toastMessage, setToastMessage] = useState("");
     const [toastType, setToastType] = useState("");
     const [notification, setNotification] = useGlobalState();
-    const [warning, setWarning] = useState('');
-
-    const validateUsername = (name) => {
-        // Clear warning if valid
-        if (!name) {
-          setWarning('');
-          return;
-        }
-      
-        if (name.length < 3 || name.length > 25) {
-          setWarning('Username must be between 3 and 25 characters.');
-        } else if (!/^[a-zA-Z]/.test(name)) {
-          setWarning('Username must start with a letter.');
-        } else if (!/^[a-zA-Z0-9._]+$/.test(name)) {
-          setWarning('Username can only contain letters, digits, dot (.) or underscore (_).');
-        } else if (/\s/.test(name)) {
-          setWarning('Username cannot contain spaces.');
-        } else {
-          setWarning('');
-        }
-      };
 
     const showToast = (message, type) => {
         console.log(message+" "+type);
@@ -45,7 +24,7 @@ const SignUpPage = () => {
         setTimeout(() => {
             setToastMessage("");
             setToastType("");
-        }, 3000);
+        }, 4500);
     };
 
     const handleGenerateOtp = async () => {
@@ -81,20 +60,22 @@ const SignUpPage = () => {
             return;
         }
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/signUp/saveUser/${otp}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/signUp/editPassword/${otp}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    userName: username,
                     password: password,
                     email: email,
             }),
         });
         
         const data = await response.text(); 
-        if(data=="saved Successfully"){
+        // console.log("response = "+response.status+" data = "+data);
+        if(response.status==200){
+            setUsername(data);
+            console.log("username = "+data);
             showToast("Account created successfully!", "success");
             //accound is created now so lets log in the user and then navigate them to homepage
             const r = await fetch(`${import.meta.env.VITE_API_URL}/login`,{
@@ -103,16 +84,17 @@ const SignUpPage = () => {
                       "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        userName: username,
+                        userName: data,
                         password : password
                     }),
                 });
                 const d = await r.text();
                 //save details to the cookies
+                console.log("token in cokei from login = "+d);
                 Cookies.set("token", d, { expires: 7});
                 // Cookies.set("username", username, { expires: 7, secure: true, sameSite: "Strict" });
                 // Cookies.set("password", password, { expires: 7, secure: true, sameSite: "Strict" });
-                setNotification("Account Created Successfully!");
+                setNotification("Password Changed Successfully!");
                 navigate("/home");
             }
             else 
@@ -129,7 +111,7 @@ const SignUpPage = () => {
             <div className="form-card">
                 <div className="pattern-bg"></div>
                 <div className="form-container">
-                    <h2>Welcome Aboard, Friend!</h2>
+                    <h2>No Worries, We've Got You!</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="email-group">
                             <input
@@ -155,26 +137,18 @@ const SignUpPage = () => {
                             placeholder="Enter OTP"
                             className="input-style"
                         />
-                        <input
+                        {/* <input
                             type="text"
                             value={username}
-                            onChange={(e) => {
-                                setUsername(e.target.value);
-                                validateUsername(e.target.value);
-                            }}
+                            onChange={(e) => setUsername(e.target.value)}
                             placeholder="Pick a unique username"
                             className="input-style"
-                        />
-                        {warning && (
-                          <div style={{ color: 'red', fontSize: '0.9rem' }}>
-                            * {warning}
-                          </div>
-                        )}
+                        /> */}
                         <input
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
+                            placeholder="Pick a new password"
                             className="input-style"
                         />
                         <input
@@ -185,17 +159,9 @@ const SignUpPage = () => {
                             className="input-style"
                         />
                         <button type="submit" className="btn-primary">
-                            Sign Up
+                            Login
                         </button>
                     </form>
-                    <p className="login-text">
-                        Already have an account? <a                 href="#"
-                                                                  className="login-link"
-                                                                  onClick={(e) => {
-                                                                      e.preventDefault();
-                                                                    navigate("/login");
-                                                                }}>Login here</a>
-                    </p>
                 </div>
             </div>
             {toastMessage && <div className={`toast ${toastType} `}>{toastMessage}</div>}
@@ -203,4 +169,4 @@ const SignUpPage = () => {
     );
 };
 
-export default SignUpPage;
+export default ForgotPassword;

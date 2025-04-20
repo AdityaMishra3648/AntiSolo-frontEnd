@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import LoadingPage from "./LoadingPage";
 
 const ProjectPage = () => {
   const navigate = useNavigate();
@@ -13,10 +14,13 @@ const ProjectPage = () => {
  const [appliedAlready, setAppliedAlready] = useState(false);
   const [toggle, setToggle] = useState(0);
   const [member, setMember] = useState(false);
+
+  
+
   const ApplyToggle = async () => {
     setApplyInProgress(true);
     try {
-      const response = await fetch(`http://localhost:7000/project/ApplyToggleInProject/${projectId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/project/ApplyToggleInProject/${projectId}`, {
                               method: "POST",
                              headers: {
                                "Content-Type": "application/json",
@@ -39,12 +43,30 @@ const ProjectPage = () => {
     }
   }
 
+  const reportProject = async () =>{
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/project/reportProject/${projectId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${Cookies.get("token")}`
+        },
+      });
+      if(response.ok){
+        // const data = await response.json();
+        console.log("reported successfully "+response.status);
+      }else console.log("failed to report the project "+response.status);
+    } catch (error) {
+      console.error("some error occured Error:", error.message);
+    }
+  }
+
   const AcceptApplicant = async (username) => {
     setApplyInProgress(true);
     console.log("accepting applicant for user = "+username);
     try {
       console.log("got inside try catch block");
-        const response = await fetch(`http://localhost:7000/project/AcceptApplicant?projectId=${projectId}&applicantUsername=${username}`,{
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/project/AcceptApplicant?projectId=${projectId}&applicantUsername=${username}`,{
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -68,7 +90,7 @@ const ProjectPage = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await fetch(`http://localhost:7000/project/getProject/${projectId}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/project/getProject/${projectId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch project data "+response.status);
         }
@@ -83,11 +105,17 @@ const ProjectPage = () => {
             setMember(true);
           } 
         }
+        for(let app of data.members){
+          // console.log(app.name)
+          if(app.name==Cookies.get("userName")){
+            setMember(true);
+            return;
+          } 
+        }
         for(let app of data.applicants){
           // console.log(app.name)
           if(app.name==Cookies.get("userName")){
             setAppliedAlready(true);
-            setMember(true);
             return;
           } 
         }
@@ -100,8 +128,28 @@ const ProjectPage = () => {
     fetchProject();
   }, [projectId,toggle]);
 
+  const handleReport = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/admin/reportProject/${projectId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${Cookies.get("token")}`
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to report project "+response.status);
+      }
+      const data = await response.json();
+      console.log(data.message);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
+
   if (error) return <p>Error: {error}</p>;
-  if (!project) return <p>Loading...</p>;
+  if (!project)   return <><LoadingPage/></>;
 
   return (
     <div>
@@ -143,6 +191,9 @@ const ProjectPage = () => {
     <br />
     <br />
          <button style={{ display: (owner || member) ? "none" : "block" }}  disabled={applyInProgress} onClick={ApplyToggle}>{appliedAlready?"Widraw":"Apply"}</button> 
+    <br />
+    <br />
+    <button onClick={reportProject}>Report</button>
     <br />
     <br />
     <button onClick={()=>navigate("/homepage")}>home</button>

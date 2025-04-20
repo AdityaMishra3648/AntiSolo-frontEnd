@@ -1,0 +1,103 @@
+.profile-containerUserProfilePageCss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile-headerUserProfilePageCss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-imageUserProfilePageCss {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-nameUserProfilePageCss {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.profile-detailsUserProfilePageCss {
+  width: 100%;
+  max-width: 600px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-emailUserProfilePageCss,
+.profile-bioUserProfilePageCss {
+  margin-bottom: 10px;
+}
+
+.edit-profile-buttonUserProfilePageCss {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-profile-buttonUserProfilePageCss:hover {
+  background-color: #0056b3;
+}
+
+.edit-profile-containerUserProfilePageCss {
+  padding: 20px;
+}
+
+.edit-profile-titleUserProfilePageCss {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.edit-profile-formUserProfilePageCss {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-groupUserProfilePageCss {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-labelUserProfilePageCss {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-inputUserProfilePageCss,
+.form-textareaUserProfilePageCss {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-textareaUserProfilePageCss {
+  resize: none;
+}
+
+.save-buttonUserProfilePageCss {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-buttonUserProfilePageCss:hover {
+  background-color: #218838;
+}

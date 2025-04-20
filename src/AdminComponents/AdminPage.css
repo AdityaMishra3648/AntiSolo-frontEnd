@@ -1,0 +1,221 @@
+.admin-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #121927;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .admin-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #2a3347;
+  }
+  
+  .admin-header h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #64ffda, #9580ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .admin-header p {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+  }
+  
+  .reports-section {
+    margin-bottom: 3rem;
+  }
+  
+  .reports-section h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #9580ff;
+  }
+  
+  .reports-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .report-card {
+    border: 1px solid #2a3347;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background-color: #1a243a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .report-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .report-header {
+    margin-bottom: 1rem;
+  }
+  
+  .reported-item {
+    font-size: 1.3rem;
+    color: #64ffda;
+    margin: 0;
+    cursor: pointer;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .reported-item:hover {
+    color: #9580ff;
+    border-color: #9580ff;
+  }
+  
+  .report-content {
+    margin-bottom: 1.5rem;
+  }
+  
+  .report-content p {
+    font-size: 1rem;
+    color: #e0e0e0;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
+  .reporter-name {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .reporter-name:hover {
+    color: #9580ff;
+    text-decoration: underline;
+  }
+  
+  .report-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .warn-button, .remove-button, .terminate-button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+  }
+  
+  .warn-button {
+    background: linear-gradient(45deg, #64ffda, #2d4c3b);
+    color: white;
+  }
+  
+  .warn-button:hover {
+    background: linear-gradient(45deg, #2d4c3b, #64ffda);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+  }
+  
+  .remove-button, .terminate-button {
+    background: linear-gradient(45deg, #ff5252, #7e3636);
+    color: white;
+  }
+  
+  .remove-button:hover, .terminate-button:hover {
+    background: linear-gradient(45deg, #7e3636, #ff5252);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 82, 82, 0.3);
+  }
+  
+  .no-reports {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    background-color: #1a243a;
+    border-radius: 12px;
+    color: #666;
+    font-size: 1.1rem;
+    border: 1px dashed #2a3347;
+  }
+  
+  .load-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .load-more-button {
+    background: linear-gradient(45deg, #9580ff, #6b5bb5);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+  }
+  
+  .load-more-button:hover {
+    background: linear-gradient(45deg, #6b5bb5, #9580ff);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(149, 128, 255, 0.3);
+  }
+  
+  .load-more-button:disabled {
+    background: #2a3347;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  @media (max-width: 768px) {
+    .admin-page {
+      padding: 1rem;
+    }
+    
+    .reports-list {
+      grid-template-columns: 1fr;
+    }
+    
+    .admin-header h1 {
+      font-size: 2rem;
+    }
+    
+    .reports-section h2 {
+      font-size: 1.5rem;
+    }
+    
+    .report-card {
+      padding: 1rem;
+    }
+    
+    .report-actions {
+      flex-direction: column;
+    }
+    
+    .warn-button, .remove-button, .terminate-button {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
