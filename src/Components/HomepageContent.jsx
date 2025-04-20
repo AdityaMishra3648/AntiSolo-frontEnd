@@ -166,7 +166,7 @@ const HomepageContent = () => {
   const fetchProjectsWithTags = async () => {
 
 
-    console.log("fetching projects with tags hasmore = "+hasMore+" loading = "+loading);
+    // console.log("fetching projects with tags hasmore = "+hasMore+" loading = "+loading);
     if (!hasMore) return;
     if(loading)return;
     setLoading(true);
@@ -231,7 +231,7 @@ const HomepageContent = () => {
         // });
         const excludeIds = projects.map(p => p.id).join(","); 
 
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/project/randomPaginated?limit=2&excludeIds=${encodeURIComponent(excludeIds)}`, {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/project/randomPaginated?limit=8&excludeIds=${encodeURIComponent(excludeIds)}`, {
               method: "GET",
               headers: {
                   "Content-Type": "application/json"
@@ -239,11 +239,11 @@ const HomepageContent = () => {
           });
           const data = await response.json(); 
         // console.log("received total "+response.data.length+" projects");
-        console.log("received total "+data.length+" projects");
+        // console.log("received total "+data.length+" projects");
         // if (response.data.length < 2) {
         //   setHasMore(false);
         // }
-        if (data.length < 2) {
+        if (data.length < 8) {
           setHasMore(false);
         }
         
