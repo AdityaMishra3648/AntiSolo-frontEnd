@@ -3,6 +3,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import { Search, Home, BellRing, Mail, Plus, User } from 'lucide-react';
 import '../CssFiles/Notifications.css';
 import Cookies from "js-cookie";
+import LoadingPage from './LoadingPage';
 
 const Notifications = () => {
   // State for notifications with mock data
@@ -115,6 +116,10 @@ const Notifications = () => {
     if (daysAgo === 0) return "Today";
     if (daysAgo === 1) return "1 day ago";
     return `${daysAgo} days ago`;
+  }
+
+  if(hasMore && notifications.length == 0){
+    return <><LoadingPage/></>;
   }
 
   return (
