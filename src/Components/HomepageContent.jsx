@@ -459,7 +459,7 @@ const HomepageContent = () => {
       <section className="projects-grid">
         {projects.length > 0 ? (
           projects.map((project,index) => (
-            <div key={project.id} className="project-card" ref={index === projects.length - 1 ? lastProjectRef : null}>
+            <div key={project.id} className="project-card" ref={index === projects.length - 1 ? lastProjectRef : null} onClick={()=>navigate(`/home/project/${project.id}`)} style={{ cursor: "pointer" }}>
               <div className="project-image">
                 <img src={project.image} alt={project.title} />
                 <div className="project-title-overlay">
