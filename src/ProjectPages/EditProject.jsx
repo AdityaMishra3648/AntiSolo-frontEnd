@@ -175,14 +175,12 @@ const EditProject = () => {
   // Handle team size changes
   const handleTeamSizeChange = (e) => {
     const newSize = parseInt(e.target.value, 10);
-    if (newSize >= project.filled) {
+    // if (newSize >= project.filled) {
       setProject(prev => ({
         ...prev,
-        teamSize: newSize
+        teamSize: Math.max(newSize, prev.filled) 
       }));
-    } else {
-      alert("Team size cannot be less than current members count!");
-    }
+    // }
   };
 
   // Toggle project status
