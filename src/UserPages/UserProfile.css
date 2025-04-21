@@ -16,6 +16,7 @@
     --transition-speed: 0.3s;
   }
   
+  
    .user-profile-containerUserProfilePageCss {
     background-color: var(--primary-bg);
     color: var(--text-primary);
@@ -59,6 +60,9 @@
   .profile-image-containerUserProfilePageCss.editableUserProfilePageCss:hover .edit-overlayUserProfilePageCss {
     opacity: 1;
   }
+  /* .profile-image-containerUserProfilePageCss.editableUserProfilePageCss .edit-overlayUserProfilePageCss{
+    opacity: 1;
+  } */
   
   .edit-overlayUserProfilePageCss {
     position: absolute;
@@ -887,4 +891,15 @@
 
 .report-button:hover {
   background-color: #d1293c;
+}
+
+.myclass{
+  cursor: pointer;
+  align-self: center;
+  text-align: center;
+  margin: auto;
+}
+
+.profile-image-container-div{
+  align-items: center;
 }

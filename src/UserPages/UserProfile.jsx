@@ -528,10 +528,11 @@ const UserProfile = () => {
   if (error) return <p>Error: {error}</p>;
   if (!user) return <><LoadingPage/></>;
 
-
+  
   return (
     <div className="user-profile-containerUserProfilePageCss">
       <div className="profile-headerUserProfilePageCss">
+        <div className="profile-image-container-div">
         <div 
           className={`profile-image-containerUserProfilePageCss ${is_author ? 'editableUserProfilePageCss' : ''}`}
           onClick={handleProfileImageClick}
@@ -540,6 +541,8 @@ const UserProfile = () => {
           <img src={user.profileImageUrl} alt={user.userName} className="profile-imageUserProfilePageCss" />
           {is_author && <div className="edit-overlayUserProfilePageCss"><span>Edit</span></div>}
         </div>
+          {is_author && <span className=" myclass rating-valueUserProfilePageCss" onClick={handleProfileImageClick}>Edit Image</span>}
+          </div>
         <div className="profile-infoUserProfilePageCss">
           <h1 className="usernameUserProfilePageCss">{user.userName}</h1>
           <p className="bioUserProfilePageCss">{user.bio}</p>
