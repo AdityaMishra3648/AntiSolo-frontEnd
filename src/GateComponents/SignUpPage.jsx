@@ -136,7 +136,7 @@ const SignUpPage = () => {
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter your email"
+                                placeholder="Email goes here"
                                 className="input-style"
                             />
                             <button
