@@ -566,7 +566,7 @@ const UserProfile = () => {
               View Friends
             </button>}
             {!alreadyBuddy && !is_author && !receivedFriendRequest && <button className="action-buttonUserProfilePageCss friends-buttonUserProfilePageCss slide-in-leftUserProfilePageCss" disabled={sendingRequest} onClick={SendOrWidrawRequest}>
-              { requestSent ? "Cancel Request" : "Send Friend Request"}
+              {sendingRequest?"Loading":( requestSent ? "Cancel Request" : "Send Friend Request")}
             </button>}
             {!alreadyBuddy && !is_author && receivedFriendRequest && <button className="action-buttonUserProfilePageCss friends-buttonUserProfilePageCss slide-in-leftUserProfilePageCss" disabled={sendingRequest} onClick={AcceptRequest}>
               {"Accept"}
