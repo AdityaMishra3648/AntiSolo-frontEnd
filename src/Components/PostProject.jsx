@@ -73,7 +73,7 @@ const PostProject = () => {
                         "Authorization": `Bearer ${Cookies.get("token")}`
                     },
                     body: JSON.stringify({
-                      "teamSize": Math.max(2,teamSize),
+                      "teamSize": Math.min(100,Math.max(2,teamSize)),
                       "filled": 1,
                       "domain": domain,
                       "tags": tags,
@@ -195,7 +195,7 @@ const PostProject = () => {
               id="teamSize"
               min="2"
               value={teamSize}
-              onChange={(e) => setTeamSize(e.target.value)}
+              onChange={(e) => setTeamSize(Math.min(100,e.target.value) )}
               className ={ errors.teamSize ? "error" : ""  }
             />
             {errors.teamSize && <div className="error-messagePostProjectclass">{errors.teamSize}</div>}

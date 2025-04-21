@@ -173,7 +173,7 @@ const EditProject = () => {
     // if (newSize >= project.filled) {
       setProject(prev => ({
         ...prev,
-        teamSize: Math.max(newSize, prev.filled) 
+        teamSize: Math.min(100,Math.max(newSize, prev.filled)) 
       }));
     // }
   };
