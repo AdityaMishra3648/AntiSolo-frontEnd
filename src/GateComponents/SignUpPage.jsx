@@ -45,7 +45,7 @@ const SignUpPage = () => {
         setTimeout(() => {
             setToastMessage("");
             setToastType("");
-        }, 3000);
+        }, 5000);
     };
 
     const handleGenerateOtp = async () => {
@@ -53,7 +53,7 @@ const SignUpPage = () => {
             showToast("Please enter your email first", "error");
             return;
         }
-        showToast("sending OTP to your email!", "success");
+        showToast("Chech Spam Folder, sending OTP to your email!", "success");
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/signUp/sendOTP`, {
               method: "POST",
@@ -154,7 +154,11 @@ const SignUpPage = () => {
                             onChange={(e) => setOtp(e.target.value)}
                             placeholder="Enter OTP"
                             className="input-style"
-                        />
+                            style={{ marginBottom: "0" }}
+                            />
+                              <div style={{ marginTop: "0",marginBottom: "1rem" ,fontWeight: 600 , color: 'red', fontSize: '0.9rem' }}>
+                                *Check Spam Folder if you don't see the OTP in your inbox
+                              </div>
                         <input
                             type="text"
                             value={username}
@@ -166,7 +170,7 @@ const SignUpPage = () => {
                             className="input-style"
                         />
                         {warning && (
-                          <div style={{ color: 'red', fontSize: '0.9rem' }}>
+                          <div style={{ marginTop: "0",marginBottom: "1rem", color: 'red', fontSize: '0.9rem' }}>
                             * {warning}
                           </div>
                         )}
