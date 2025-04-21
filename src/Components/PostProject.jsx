@@ -5,6 +5,7 @@ import React, { use, useState,useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 // import Dropdown from './Dropdown';
 import Cookies from "js-cookie";
+import { set } from 'react-hook-form';
 
 const PostProject = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const PostProject = () => {
   const [tags,setTags] = useState([]);
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
+  const [uploading, setUploading] = useState(false);
   const showToast = (message, type) => {
         console.log(message+" "+type);
         setToastMessage(message);
@@ -65,6 +67,7 @@ const PostProject = () => {
             //     showToast("Passwords do not match!", "error");
             //     return;
             // }
+            setUploading(true);
             try {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/project/save`, {
                     method: "POST",
@@ -90,15 +93,19 @@ const PostProject = () => {
               console.log("data = "+data);
               if(data=="Saved successfully"){
                   showToast("Project posted successfully!", "success");
+                  setUploading(false);
                   navigate("/home");
-              }
-              else{ 
+                }
+                else{ 
+                setUploading(false);
                 showToast(data, "error");
               }
             } catch (error) {
+              setUploading(false);
               showToast("some error Occured! Try again", "error");
               console.error("Error:", error);
             }
+            setUploading(false);
         }
   // Domain options
   const projectDomains = [
@@ -324,7 +331,7 @@ const PostProject = () => {
           </div>
 
           <div className="form-actionsPostProjectclass">
-            <button type="submit"  onClick={postProject} className="submit-buttonPostProjectclass">
+            <button type="submit"  disabled={uploading} onClick={postProject} className="submit-buttonPostProjectclass">
               Post Project
             </button>
           </div>
