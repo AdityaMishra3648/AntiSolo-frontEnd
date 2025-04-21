@@ -165,11 +165,6 @@ const EditProject = () => {
 
   // Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProject(prev => ({
-      ...prev,
-      [name]: value
-    }));
   };
 
   // Handle team size changes
