@@ -386,7 +386,7 @@ const Project = () => {
               className={`Project_Page_Class-apply-button ${appliedAlready ? 'applied' : ''}`} 
               style={{ display: (owner || member) ? "none" : "block" }}  disabled={applyInProgress} onClick={ApplyToggle}
             >
-              {appliedAlready ? 'Applied ✓' : 'Apply to Join'}
+              {applyInProgress?"Loading":(appliedAlready ? 'Applied ✓' : 'Apply to Join')}
             </button>
             { member && <button className="Project_Page_Class-chat-button" onClick={() => navigate(`/group/${project.id}`)} >
               <span className="Project_Page_Class-chat-icon">💬</span>
