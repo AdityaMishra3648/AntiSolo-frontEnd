@@ -90,7 +90,7 @@ const PostProject = () => {
               console.log("data = "+data);
               if(data=="Saved successfully"){
                   showToast("Project posted successfully!", "success");
-                  navigate("/homepage");
+                  navigate("/home");
               }
               else{ 
                 showToast(data, "error");
