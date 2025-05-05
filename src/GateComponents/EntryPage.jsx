@@ -50,8 +50,8 @@ const EntryPage = () => {
     <div className="page-container">
       <div className="background">
         <img
-          // src="https://i.pinimg.com/originals/8b/35/fe/8b35fef55fba1a201c9c7a11d3ec3d64.gif"
-          src="https://res.cloudinary.com/dx7bcuxjn/image/upload/v1745087736/8b35fef55fba1a201c9c7a11d3ec3d64_ao7or2.gif"
+          src="https://i.pinimg.com/originals/8b/35/fe/8b35fef55fba1a201c9c7a11d3ec3d64.gif"
+          // src="https://res.cloudinary.com/dx7bcuxjn/image/upload/v1745087736/8b35fef55fba1a201c9c7a11d3ec3d64_ao7or2.gif"
           alt="Coding animation"
         />
       </div>
